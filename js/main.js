@@ -6,8 +6,9 @@ function logOut() { };
 
 function editProfile() { };
 
-function addNewTask(name, details, priority, dueDate) {
+function addNewTask(id, name, details, priority, dueDate) {
       const task = {
+            id: id,
             name: name,
             details: details,
             priority: priority,
@@ -16,7 +17,9 @@ function addNewTask(name, details, priority, dueDate) {
       tasks.push(task);
 };
 
-function asignPriority() { };
+function asignPriority(priority) {
+      tasks.push(task.priority)
+};
 
 function asignDueDate() { };
 
@@ -26,12 +29,12 @@ function deleteTasks() { };
 
 function displayTasks() {
       for (const task of tasks) {
-            alert("Name: " + task.name + "; details: " + task.details + "; priority: " + task.priority + "; Due Date: " + task.dueDate)
+            alert("ID: " + task.id + "; Name: " + task.name + "; details: " + task.details + "; priority: " + task.priority + "; Due Date: " + task.dueDate)
       }
 };
 
-addNewTask("Clean House", "Sweep, mop and dust. Then, clean up room.", "Low", "03/05/2024");
-addNewTask("Create schedule", "Create a schedule to study JavaScript", "High", "04/05/2024");
+addNewTask("001", "Finish the project", "Testing Details 1. Details added.", "Low", "03/05/2024");
+addNewTask("002", "Create schedule", "Testing Details 2. More details added", "High", "04/05/2024");
 
 displayTasks();
 console.log(tasks);
