@@ -1,57 +1,26 @@
 const tasks = [];
 
-function addNewTask(id, name, details, priority, dueDate) {
-  const task = {
-    id: id,
-    name: name,
-    details: details,
-    priority: priority,
-    dueDate: dueDate,
-  };
-  tasks.push(task);
-}
+while (true) {
+  const newTask = confirm("¿Quiere ingresar una nueva tarea?");
 
-function asignPriority(priority) {
-  tasks.push(task.priority);
-}
+  if (newTask) {
+    const newTaskName = prompt("Ingrese el nombre de la tarea:");
+    const newTaskDetails = prompt("ingrese los detalles de la tarea:");
+    const newTaskCompleted = confirm("¿La tarea está completada?");
 
-function asignDueDate() {}
+    const task = {
+      name: newTaskName,
+      details: newTaskDetails,
+      completed: newTaskCompleted,
+    };
 
-function markTaskAsCompleted() {}
+    tasks.push(task);
 
-function deleteTasks() {}
-
-function displayTasks() {
-  for (const task of tasks) {
-    alert(
-      "ID: " +
-        task.id +
-        "; Name: " +
-        task.name +
-        "; details: " +
-        task.details +
-        "; priority: " +
-        task.priority +
-        "; Due Date: " +
-        task.dueDate
-    );
+    alert("La tarea ha sido agregada con éxito");
+  } else {
+    alert("gracias!");
+    break;
   }
 }
 
-addNewTask(
-  "001",
-  "Finish the project",
-  "Testing Details 1. Details added.",
-  "Low",
-  "03/05/2024"
-);
-addNewTask(
-  "002",
-  "Create schedule",
-  "Testing Details 2. More details added",
-  "High",
-  "04/05/2024"
-);
-
-displayTasks();
 console.log(tasks);
