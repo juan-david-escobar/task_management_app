@@ -2,7 +2,7 @@ const tasks = [];
 
 while (true) {
   const actionSelected = prompt(
-    "Para agregar tarea = '1'; para ver tareas = '2'; para salir haga click en 'cancelar'"
+    "Agregar tarea = '1' || Ver tareas = '2' || Salir = 'cancelar'"
   );
 
   if (actionSelected === "1") {
@@ -22,10 +22,14 @@ while (true) {
   }
 
   if (actionSelected === "2") {
-    tasks.forEach((element) => {
+    tasks.forEach((task) => {
       alert(
-        `Nombre task 1: ${tasks[0].name}, Details task 1: ${tasks[0].details}, Completed?: ${tasks[0].completed}`
+        `Nombre task: ${task.name}, Details task: ${task.details}, Completed?: ${task.completed}`
       );
     });
+  }
+
+  if (actionSelected === null) {
+    break;
   }
 }
