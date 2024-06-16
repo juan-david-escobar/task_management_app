@@ -1,23 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>To-Do List</title>
-      <link rel="stylesheet" href="styles.css">
+      <title>Task Manager</title>
+      <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-      <div id="app">
-            <h1>To-Do List</h1>
-            <input type="text" id="new-task" placeholder="New task">
-            <button id="add-task">Add Task</button>
-            <ul id="task-list"></ul>
-            <button id="clear-tasks">Clear Completed Tasks</button>
+      <h1>Task Manager</h1>
+
+      <div id="addTask">
+            <input type="text" id="taskDetails" placeholder="Enter task details">
+            <button id="addButton">Add Task</button>
       </div>
-      <script src="storage.js"></script>
-      <script src="app.js"></script>
+
+      <table>
+            <thead>
+                  <tr>
+                        <th>ID</th>
+                        <th>Details</th>
+                        <th>Completed</th>
+                        <th>Actions</th>
+                  </tr>
+            </thead>
+            <tbody id="taskList">
+
+            </tbody>
+      </table>
+
+      <script src="script.js"></script>
 </body>
 
 </html>
