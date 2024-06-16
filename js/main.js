@@ -1,35 +1,86 @@
-const tasks = [];
+// Get references to elements
+const taskList = document.getElementById("taskList");
+const taskDetailsInput = document.getElementById("taskDetails");
+const addButton = document.getElementById("addButton");
 
-while (true) {
-  const actionSelected = prompt(
-    "Agregar tarea = '1' || Ver tareas = '2' || Salir = 'cancelar'"
-  );
+// Load tasks from local storage (or initialize empty array)
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-  if (actionSelected === "1") {
-    const name = prompt("Ingrese el nombre de la tarea:");
-    const details = prompt("ingrese los detalles de la tarea:");
-    const completed = confirm("¿La tarea está completada?");
+// Load initial tasks from JSON file
+fetch("tasks.json")
+  .then((response) => response.json())
+  .then((initialTasks) => {
+    tasks = tasks.concat(initialTasks); // Combine initial and stored tasks
+    renderTasks();
+  });
 
-    const task = {
-      name: name,
-      details: details,
-      completed: completed,
+// Function to render tasks in the table
+function renderTasks() {
+  taskList.innerHTML = ""; // Clear the table
+
+  tasks.forEach((task) => {
+    const row = taskList.insertRow();
+    row.insertCell().textContent = task.id;
+    row.insertCell().textContent = task.details;
+    row.insertCell().textContent = task.completed ? "Yes" : "No";
+
+    // Actions cell (edit/delete buttons)
+    const actionsCell = row.insertCell();
+    actionsCell.innerHTML = `
+      <button onclick="editTask(${task.id})" class="container_input_button">Edit</button>
+      <button onclick="deleteTask(${task.id})" class="container_input_button">Delete</button>
+    `;
+  });
+}
+
+// Function to add a new task
+function addTask() {
+  const details = taskDetailsInput.value.trim();
+  if (details) {
+    const newTask = {
+      id: tasks.length > 0 ? Math.max(...tasks.map((t) => t.id)) + 1 : 1,
+      details,
+      completed: false,
     };
-
-    tasks.push(task);
-
-    alert("La tarea ha sido agregada con éxito");
-  }
-
-  if (actionSelected === "2") {
-    tasks.forEach((task) => {
-      alert(
-        `Nombre task: ${task.name}, Details task: ${task.details}, Completed?: ${task.completed}`
-      );
-    });
-  }
-
-  if (actionSelected === null) {
-    break;
+    tasks.push(newTask);
+    saveTasks(); // Save to local storage
+    renderTasks();
+    taskDetailsInput.value = "";
   }
 }
+
+// Function to save tasks to local storage
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// Function to edit a task
+function editTask(taskId) {
+  const taskIndex = tasks.findIndex((task) => task.id === taskId);
+  if (taskIndex !== -1) {
+    const updatedDetails = prompt(
+      "Enter new task details:",
+      tasks[taskIndex].details
+    );
+    if (updatedDetails !== null) {
+      tasks[taskIndex].details = updatedDetails.trim();
+      saveTasks();
+      renderTasks();
+    }
+  }
+}
+
+// Function to delete a task
+function deleteTask(taskId) {
+  if (confirm("Are you sure you want to delete this task?")) {
+    tasks = tasks.filter((task) => task.id !== taskId);
+    saveTasks();
+    renderTasks();
+  }
+}
+
+// Event listeners
+addButton.addEventListener("click", addTask);
+
+// Initial rendering of tasks
+renderTasks();
