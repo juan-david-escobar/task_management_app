@@ -3,30 +3,33 @@
 
 <head>
       <title>Task Manager</title>
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="./style/styles.css">
 </head>
 
 <body>
-      <h1>Task Manager</h1>
+      <div class="container">
+            <h1 class="container_title">Task Manager</h1>
 
-      <div id="addTask">
-            <input type="text" id="taskDetails" placeholder="Enter task details">
-            <button id="addButton">Add Task</button>
+            <div id="addTask" class="container_input_section">
+                  <input type="text" id="taskDetails" placeholder="Enter task details" class="container_input">
+                  <button id="addButton">Add Task</button class="container_input_button">
+            </div>
+
+            <table class="container_table">
+                  <thead class="container_table_header">
+                        <tr class="container_table_first_row">
+                              <th class="container_first_row_cell">ID</th>
+                              <th class="container_first_row_cell">Details</th>
+                              <th class="container_first_row_cell">Completed</th>
+                              <th class="container_first_row_cell">Actions</th>
+                        </tr>
+                  </thead>
+                  <tbody id="taskList">
+
+                  </tbody class="container_table_body">
+            </table>
+
       </div>
-
-      <table>
-            <thead>
-                  <tr>
-                        <th>ID</th>
-                        <th>Details</th>
-                        <th>Completed</th>
-                        <th>Actions</th>
-                  </tr>
-            </thead>
-            <tbody id="taskList">
-
-            </tbody>
-      </table>
 
       <script src="script.js"></script>
 </body>

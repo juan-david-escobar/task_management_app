@@ -1,7 +1,41 @@
 * {
   padding: 0px;
   margin: 0px;
-  box-sizing: 0px;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: rgb(224, 241, 255);
+}
+
+.container {
+  background-color: rgb(250, 251, 252);
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+  padding: 30px;
+}
+
+.container_title {
+  margin-bottom: 15px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgb(4, 4, 126);
+}
+
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+th {
+  background-color: #f2f2f2;
 }
 
 /*# sourceMappingURL=styles.css.map */
