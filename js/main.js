@@ -1,5 +1,6 @@
 // Get references to elements
 const taskList = document.getElementById("taskList");
+const taskNameInput = document.getElementById("taskName");
 const taskDetailsInput = document.getElementById("taskDetails");
 const addButton = document.getElementById("addButton");
 
@@ -21,6 +22,7 @@ function renderTasks() {
   tasks.forEach((task) => {
     const row = taskList.insertRow();
     row.insertCell().textContent = task.id;
+    row.insertCell().textContent = task.name;
     row.insertCell().textContent = task.details;
     row.insertCell().textContent = task.completed ? "Yes" : "No";
 
@@ -35,17 +37,23 @@ function renderTasks() {
 
 // Function to add a new task
 function addTask() {
+  const name = taskNameInput.value.trim();
   const details = taskDetailsInput.value.trim();
-  if (details) {
+  if (name && details) {
     const newTask = {
       id: tasks.length > 0 ? Math.max(...tasks.map((t) => t.id)) + 1 : 1,
+      name,
       details,
       completed: false,
     };
+
     tasks.push(newTask);
-    saveTasks(); // Save to local storage
+    saveTasks();
     renderTasks();
+    taskNameInput.value = "";
     taskDetailsInput.value = "";
+  } else {
+    alert("Please enter both task name and details.");
   }
 }
 
